@@ -14,10 +14,20 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <script>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("global-theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="assets/styles.css?v=readability-1" />
   </head>
   <body>
-    <div class="grain"></div>
     <header class="site-header" data-header>
       <a class="brand" href="index.html" aria-label="Global home">
         <span class="brand-mark">G</span>
@@ -33,23 +43,30 @@
         <a href="dashboard.html">Dashboard</a>
         <a href="future.html" aria-current="page">Future features</a>
       </nav>
-      <a class="header-cta" href="dashboard.html">Metrics</a>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-label" data-theme-label>Dark mode</span>
+        </button>
+        <a class="header-cta" href="dashboard.html">Metrics</a>
+      </div>
     </header>
 
     <main>
       <section class="future-hero section-shell">
         <div class="future-copy reveal">
           <p class="eyebrow">Future features</p>
-          <h1>The roadmap makes the platform feel inevitable.</h1>
+          <h1>The roadmap turns the marketplace into infrastructure.</h1>
           <p>
-            This block shows where Global can grow after the MVP: from document storage to predictive matching,
-            institution APIs, and a trusted global student identity layer.
+            After the MVP, Global can grow from document storage into predictive matching, institution APIs, and a
+            trusted global student identity layer.
           </p>
         </div>
         <div class="roadmap-card reveal">
           <span>Next 12 months</span>
           <strong>From marketplace to infrastructure</strong>
-          <p>Every feature expands the trust layer between universities, students, recruiters, and compliance teams.</p>
+          <p>Each feature helps universities, students, recruiters, and compliance teams work from the same trusted record.</p>
+          <div class="signature-stamp signature-stamp-dark roadmap-stamp">Roadmap · verified</div>
         </div>
       </section>
 
@@ -92,7 +109,7 @@
         <article class="future-feature paper-blue">
           <div class="feature-label">Compliance</div>
           <h2>Policy radar</h2>
-          <p>Track country-specific visa, data privacy, document, and admissions rule changes in one operational feed.</p>
+          <p>Track visa, privacy, document, and admissions rule changes in one country-aware operational feed.</p>
         </article>
 
         <article class="future-feature paper-yellow">
@@ -114,7 +131,7 @@
       <section class="section-shell timeline-section">
         <div class="section-heading reveal">
           <p class="eyebrow">Roadmap logic</p>
-          <h2>Every future feature supports trust, speed, or liquidity.</h2>
+          <h2>Every future feature makes the marketplace more trusted, faster, or easier to operate.</h2>
         </div>
         <div class="timeline reveal">
           <div>
@@ -137,7 +154,7 @@
     </main>
 
     <footer class="site-footer">
-      <span>Global</span>
+      <a class="footer-brand" href="index.html">Global</a>
       <p>Future features for a serious global education infrastructure product.</p>
       <nav>
         <a href="index.html">Platform</a>
@@ -146,6 +163,6 @@
         <a href="future.html">Future</a>
       </nav>
     </footer>
-    <script src="assets/script.js"></script>
+    <script src="assets/script.js?v=dashboard-nav-1"></script>
   </body>
 </html>

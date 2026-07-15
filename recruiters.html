@@ -14,10 +14,20 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650;9..144,750&family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <script>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("global-theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = storedTheme || (prefersDark ? "dark" : "light");
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="assets/styles.css?v=readability-1" />
   </head>
   <body>
-    <div class="grain"></div>
     <header class="site-header" data-header>
       <a class="brand" href="index.html" aria-label="Global home">
         <span class="brand-mark">G</span>
@@ -33,7 +43,13 @@
         <a href="dashboard.html">Dashboard</a>
         <a href="future.html">Future features</a>
       </nav>
-      <a class="header-cta" href="#pilot">Pilot access</a>
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark theme">
+          <span class="theme-toggle-icon" aria-hidden="true"></span>
+          <span class="theme-toggle-label" data-theme-label>Dark mode</span>
+        </button>
+        <a class="header-cta" href="#pilot">Pilot access</a>
+      </div>
     </header>
 
     <main>
@@ -55,29 +71,23 @@
           <div class="offer-card offer-main">
             <span class="tag">Recruiter brief</span>
             <h2>Master's candidates for EU business schools</h2>
-            <div class="offer-meta">
-              <span>Budget: €8k-€18k</span>
-              <span>English B2+</span>
-              <span>Docs 70%+</span>
+            <div class="candidate-stack">
+              <div class="candidate-card tilted-a">
+                <div class="avatar-pill">AK</div>
+                <div>
+                  <strong>Amina K.</strong>
+                  <span>Morocco - Finance - 92%</span>
+                </div>
+              </div>
+              <div class="candidate-card tilted-b">
+                <div class="avatar-pill">VN</div>
+                <div>
+                  <strong>Vinh N.</strong>
+                  <span>Vietnam - Data science - docs ready</span>
+                </div>
+              </div>
+              <div class="signature-stamp doc-sticker">Document room · verified</div>
             </div>
-          </div>
-          <div class="candidate-card tilted-a">
-            <div class="avatar-pill">AK</div>
-            <div>
-              <strong>Amina K.</strong>
-              <span>Morocco - Finance - 92% match</span>
-            </div>
-          </div>
-          <div class="candidate-card tilted-b">
-            <div class="avatar-pill">VN</div>
-            <div>
-              <strong>Vinh N.</strong>
-              <span>Vietnam - Data science - Visa docs ready</span>
-            </div>
-          </div>
-          <div class="doc-sticker">
-            <span>Document room</span>
-            <strong>18 files verified</strong>
           </div>
         </div>
       </section>
@@ -97,7 +107,7 @@
             <p>Every candidate carries a visible document status, missing-file list, and deadline pressure indicator.</p>
           </article>
           <article class="pain-card reveal">
-            <h3>No trust layer</h3>
+            <h3>No shared trust layer</h3>
             <p>Recruiters can see consent, source, profile history, and audit notes before moving student data around.</p>
           </article>
         </div>
@@ -150,7 +160,7 @@
           <article class="process-card reveal">
             <span>03</span>
             <h3>Review document rooms</h3>
-            <p>See missing files, verified files, and operational blockers before making outreach.</p>
+            <p>See missing files, verified files, and operational blockers before reaching out.</p>
           </article>
           <article class="process-card reveal">
             <span>04</span>
@@ -163,7 +173,7 @@
       <section class="section-shell pilot-panel reveal" id="pilot">
         <div>
           <p class="eyebrow">Pilot access</p>
-          <h2>Start with one market, one intake, one serious cohort.</h2>
+          <h2>Start with one market, one intake, one credible cohort.</h2>
           <p>
             The first version is designed for a controlled recruiter pilot: enough structure to feel enterprise, light
             enough to adapt around real operational feedback.
@@ -184,7 +194,7 @@
     </main>
 
     <footer class="site-footer">
-      <span>Global</span>
+      <a class="footer-brand" href="index.html">Global</a>
       <p>Qualified student recruitment, without spreadsheet chaos.</p>
       <nav>
         <a href="index.html">Platform</a>
@@ -193,6 +203,6 @@
         <a href="future.html">Future</a>
       </nav>
     </footer>
-    <script src="assets/script.js"></script>
+    <script src="assets/script.js?v=dashboard-nav-1"></script>
   </body>
 </html>
